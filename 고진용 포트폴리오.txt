@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼포먼스 마케터 포트폴리오</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 네비게이션 바 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #111;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0070f3;
+        }
+
+        /* 히어로 섹션 (메인 카피) */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            text-align: center;
+        }
+
+        .main-copy {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 24px;
+            word-break: keep-all;
+            line-height: 1.3;
+        }
+
+        .main-copy span {
+            color: #0070f3; /* 강조 포인트 컬러 */
+        }
+
+        .sub-copy {
+            font-size: 1.25rem;
+            color: #555;
+            max-width: 600px;
+            word-break: keep-all;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            padding: 15px 35px;
+            background-color: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #0070f3;
+            transform: translateY(-2px);
+        }
+
+        /* 공통 섹션 스타일 */
+        section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 4px;
+            background-color: #0070f3;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 자기소개 섹션 */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd; /* 실제 사진 주소(URL)를 넣으시면 대치됩니다 */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* 스킬 섹션 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border-top: 4px solid #111;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card.tech { border-top-color: #ff4b4b; } /* 어도비 레드 */
+        .skill-card.data { border-top-color: #0070f3; } /* GA 블루 */
+
+        .skill-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* 프로젝트 섹션 (포트폴리오 프레임) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .project-thumbnail {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: #eef2f6;
+            color: #0070f3;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .project-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 대응 */
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* 모바일에선 링크 숨김 (간소화) */
+            .main-copy { font-size: 2rem; }
+            .about-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <nav>
+        <div class="logo">MARKETER PORTFOLIO</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 (메인/서브 카피 배치) -->
+    <header>
+        <h1 class="main-copy">디자인을 아는 마케터,<br><span>데이터로 성과를 증명하다.</span></h1>
+        <p class="sub-copy">어도비 편집과 SEO · GA 역량으로 크리에이티브와 성과를 모두 잡겠습니다.</p>
+        <a href="#projects" class="cta-btn">프로젝트 보기</a>
+    </header>
+
+    <!-- 자기소개 섹션 -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="profile-img">[프로필 사진 등록]</div>
+            <div class="about-text">
+                <h3>안녕하세요, 준비된 하이브리드 마케터입니다.</h3>
+                <p>단순히 예쁜 제작물을 만드는 것에 그치지 않고, 그 제작물이 소비자의 행동을 어떻게 이끌어냈는지 데이터(GA/SEO)로 추적하고 검증합니다. 시각적 감각과 데이터 기반의 논리력을 결합하여 비즈니스의 실질적인 성과를 만들어내는 것이 저의 목표입니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 스킬 섹션 -->
+    <section id="skills">
+        <h2>Core Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card tech">
+                <h3>Creative & Design</h3>
+                <ul>
+                    <li>• Adobe Photoshop / Premiere Pro</li>
+                    <li>• 웹디자인 기초 레이아웃 설계</li>
+                    <li>• 브랜드 스토리보드 및 시각 콘텐츠 기획</li>
+                </ul>
+            </div>
+            <div class="skill-card data">
+                <h3>Data & Performance</h3>
+                <ul>
+                    <li>• Google Analytics (GA4) 데이터 추적</li>
+                    <li>• 검색엔진 최적화(SEO) 기초 개념 및 키워드 추출</li>
+                    <li>• 타깃 맞춤형 데이터 인사이트 도출</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로젝트 섹션 -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <!-- 프로젝트 1 (예시 프레임) -->
+            <div class="project-card">
+                <div class="project-thumbnail">[프로젝트 이미지 또는 콘티 썸네일]</div>
+                <div class="project-info">
+                    <span class="project-tag">Creative & Strategy</span>
+                    <h3>브랜드 콘텐츠 기획 및 스토리보드 제작</h3>
+                    <p>어도비 프로그램을 활용하여 타깃 중심의 비주얼 콘티를 기획하고, 브랜드 메시지를 효과적으로 전달하는 시각 자료를 제작했습니다.</p>
+                </div>
+            </div>
+            <!-- 프로젝트 2 (예시 프레임) -->
+            <div class="project-card">
+                <div class="project-thumbnail">[데이터 대시보드 스크린샷]</div>
+                <div class="project-info">
+                    <span class="project-tag">Performance</span>
+                    <h3>GA 및 SEO 기반 웹 트래픽 분석 프로젝트</h3>
+                    <p>구글 애널리틱스 툴과 검색 최적화 개념을 활용해 가상의 웹페이지 로그 데이터를 분석하고, 전환율을 높이기 위한 개선안을 도출했습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>© 2026 하이브리드 퍼포먼스 마케터 포트폴리오. All 기획 및 디자인.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #555;">Email: your-email@example.com | Phone: 010-XXXX-XXXX</p>
+    </footer>
+
+</body>
+</html>
